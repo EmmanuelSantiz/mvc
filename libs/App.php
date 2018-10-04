@@ -1,8 +1,10 @@
 <?php
+require_once 'controllers/Errores.php';
 
 class App {
 
 	private $url = '';
+
 
 	function __construct() {
 		$this->url = $_GET['url'];
@@ -22,7 +24,7 @@ class App {
 				$controller->index();
 			}
 		} else {
-			echo 'Error';
+			$controller = new Errores();
 		}
 	}
 }
