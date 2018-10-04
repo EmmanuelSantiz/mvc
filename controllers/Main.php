@@ -1,11 +1,11 @@
 <?php
-class Main {
+class Main extends Controller {
 	function __construct() {
-		
+		parent::__construct();
 	}
 
 	public function index() {
-		echo 'index';
+		$this->view->template('main/index');
 	}
 
 	public function prueba() {
