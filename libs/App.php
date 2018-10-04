@@ -5,11 +5,17 @@ class App {
 
 	private $url = '';
 
-
 	function __construct() {
-		$this->url = $_GET['url'];
+		$this->url = isset($_GET['url']) ? $_GET['url'] : null;
 		$this->url = rtrim($this->url, '/');
 		$this->url = explode('/', $this->url);
+
+		if (empty($this->url[0])) {
+			require_once 'controllers/main.php';
+			$controller = new Main();
+			$controller->index();
+			return false;
+		}
 
 		$archivoController = 'controllers/'.$this->url[0].'.php';
 
@@ -26,6 +32,8 @@ class App {
 		} else {
 			$controller = new Errores();
 		}
+
+		$this->site_url = implode('/', $this->url);
 	}
 }
 ?>

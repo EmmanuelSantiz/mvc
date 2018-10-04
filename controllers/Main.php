@@ -5,7 +5,11 @@ class Main extends Controller {
 	}
 
 	public function index() {
-		$this->view->template('main/index');
+		/*if (isset($_SESSION)) {
+			$this->view->render('login');
+		} else {*/
+			$this->view->template('main/index');
+		//}
 	}
 
 	public function prueba() {
