@@ -16,7 +16,7 @@ class Login extends Controller {
 			$data = $this->Model->get($_POST);
 			if($data) {
 				$_SESSION['id_usuario'] = $data['id_usuario'];
-				$_SESSION['char_nombre'] = $data['char_nombre'];
+				$_SESSION['char_usuario'] = $data['char_usuario'];
 			} else {
 				$_SESSION['temp'] = true;
 			}	
