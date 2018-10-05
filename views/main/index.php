@@ -1,1 +1,1 @@
-<h1 class="mt-5">Vista de Main/Index</h1>
+<h1 class="mt-5">Bienvenido <?php echo $_SESSION['char_usuario']; ?></h1>
