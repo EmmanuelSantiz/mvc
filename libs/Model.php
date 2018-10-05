@@ -2,7 +2,7 @@
 class Model {
 	
 	function __construct() {
-		echo 'Padre';
+		$this->db = new Database();
 	}
 }
 ?>

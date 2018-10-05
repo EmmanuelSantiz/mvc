@@ -40,7 +40,7 @@
         .form-signin .form-control:focus {
           z-index: 2;
         }
-        .form-signin input[type="email"] {
+        .form-signin input[type="input"] {
           margin-bottom: -1px;
           border-bottom-right-radius: 0;
           border-bottom-left-radius: 0;
@@ -54,12 +54,29 @@
   </head>
 
   <body class="text-center">
-    <form class="form-signin">
+    <form class="form-signin" action="<?php echo base_url("login/index"); ?>" method="post">
+      <div class="alert alert-success alert-dismissable" style="display: none;" id="msjS">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>¡Exito!</strong> Cuenta Creada Exitosamente.
+    </div>
+    <?php 
+    if (isset($_SESSION['temp'])) {
+      session_destroy();
+    ?>
+    <div class="alert alert-danger alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Error!</strong> Ocurrio un Error, Revise Usuario y/o Password
+    </div>
+    <?php }?>
+      <div class="alert alert-danger alert-dismissable" style="display: none;" id="msjE">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Error!</strong> Ocurrio un Error
+      </div>
       <h1 class="h3 mb-3 font-weight-normal">Login</h1>
-      <label for="inputEmail" class="sr-only">Usuario</label>
-      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
+      <label for="char_user" class="sr-only">Usuario</label>
+      <input type="input" id="char_user" class="form-control" name="char_usuario" autofocus="">
       <label for="inputPassword" class="sr-only">Contraseña</label>
-      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+      <input type="password" id="inputPassword" name="char_password" class="form-control" placeholder="Password">
       <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
       <button type="button" class="btn btn-lg btn-info btn-block" data-toggle="modal" data-target="#myModal">Registrarse</button>
       <p class="mt-5 mb-3 text-muted">© Emmanuel Santiz <?php echo date('Y'); ?></p>
@@ -77,12 +94,12 @@
       <div class="modal-body">
         <form id="registro">
           <div class="form-group">
-              <label for="usuario" class="text-left">Usuario</label>
-              <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuario"/>
+              <label for="char_usuario" class="text-left">Usuario</label>
+              <input type="text" class="form-control" id="char_usuario" name="char_usuario" placeholder="Usuario"/>
           </div>
           <div class="form-group">
-              <label for="password" class="text-left">Contraseña</label>
-              <input type="text" class="form-control" id="password" name="password" placeholder="Password"/>
+              <label for="char_password" class="text-left">Contraseña</label>
+              <input type="password" class="form-control" id="char_password" name="char_password" placeholder="Password"/>
           </div>
         </form>
       </div>
@@ -97,13 +114,26 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </body></html>
 
 <script type="text/javascript">
-  var url = '<?php echo $this->url[0]; ?>';
+  var url = '<?php echo base_url("login/index"); ?>';
   $('#guardar').click(function() {
+    var boton = $(this);
+    
     $.post(url, {data: $('#registro').serialize() }, function(data) {
       console.log(data)
+      $('#registro')[0].reset();
+      boton.next().click();
+
+      if (data.data) {
+        $('#msjS').show();
+        $('#msjE').hide();
+      } else {
+        $('#msjS').hide();
+        $('#msjE').show();
+      }      
     });
   });
 </script>

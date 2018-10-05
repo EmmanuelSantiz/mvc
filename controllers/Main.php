@@ -5,15 +5,11 @@ class Main extends Controller {
 	}
 
 	public function index() {
-		/*if (isset($_SESSION)) {
+		if (!isset($_SESSION['id_usuario'])) {
 			$this->view->render('login');
-		} else {*/
+		} else {
 			$this->view->template('main/index');
-		//}
-	}
-
-	public function prueba() {
-		echo 'Hola a todos desde Mvc';
+		}
 	}
 }
 ?>

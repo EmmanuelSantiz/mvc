@@ -7,7 +7,23 @@ if (!function_exists('isAjax')) {
 
 if (!function_exists('retornoJson')) {
 	function retornoJson($data) {
+		header('Content-type:application/json;charset=utf-8');
 		return json_encode($data);
+	}
+}
+
+if (!function_exists('base_url')) {
+	function base_url($data = '') {
+		return constant('URL').$data;
+	}
+}
+
+if (!function_exists('dd')) {
+	function dd($array = array()) {
+		echo '<pre>';
+		var_dump($array);
+		echo '</pre>';
+		exit();
 	}
 }
 ?>
