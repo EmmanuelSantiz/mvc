@@ -19,14 +19,16 @@ class Login extends Controller {
 				$_SESSION['char_usuario'] = $data['char_usuario'];
 			} else {
 				$_SESSION['temp'] = true;
-			}	
-			header('Location: ' . base_url());
+			}
+			redirect();
+			//header('Location: ' . base_url());
 		}
 	}
 
 	public function logout() {
 		session_destroy();
-		header('Location: ' . base_url());
+		redirect();
+		//header('Location: ' . base_url());
 	}
 }
 ?>

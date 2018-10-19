@@ -26,4 +26,10 @@ if (!function_exists('dd')) {
 		exit();
 	}
 }
+
+if (!function_exists('redirect')) {
+	function redirect($data = '') {
+		header('Location: '.constant('URL').$data);
+	}
+}
 ?>

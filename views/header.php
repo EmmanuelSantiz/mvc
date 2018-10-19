@@ -16,6 +16,9 @@
 	              <a class="nav-link" href="#">Inicio</a>
 	            </li>
 	            <li class="nav-item">
+	            	<a class="nav-link" href="<?php echo base_url("usuarios/"); ?>">Usuarios</a>
+	            </li>
+	            <li class="nav-item">
 	              <a class="nav-link" href="<?php echo base_url("login/logout"); ?>">Salir</a>
 	            </li>
 	          </ul>
@@ -23,4 +26,4 @@
 	      </nav>
 	</header>
 <main role="main" class="container">
-    
+    <br>
