@@ -15,6 +15,19 @@ class Usuarios extends Controller {
 		}
 	}
 
+	public function editar() {
+		$respuesta['usuario'] = $this->Model->get($this->getId());
+		$respuesta['id'] = $this->getId();
+		$this->view->template('usuarios/editar', $respuesta);
+
+		if ($_POST) {
+			$update = $_POST;
+			$update['id_usuario'] = $this->getId();
+			$respuesta['data'] = $this->Model->editar($update);
+			redirect('usuarios/');
+		}
+	}
+
 	public function borrar() {
 		if(isAjax()) {
 			$respuesta['post'] = $_POST;

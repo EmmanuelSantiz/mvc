@@ -25,7 +25,12 @@ class App {
 			$controller = new $this->url[0];
 
 			if (isset($this->url[1])) {
+				if (isset($this->url[2])) {
+					$controller->setId($this->url[2]);
+				}
+					
 				$controller->{$this->url[1]}();
+
 			} else {
 				$controller->index();
 			}

@@ -48,7 +48,7 @@
 	var urlDelete = '<?php echo base_url("usuarios/borrar/"); ?>';
 
 	function update(id) {
-		alert(id)
+		window.location.href = '<?php echo base_url("usuarios/editar/"); ?>'+id;
 	}
 
 	function borrar(id) {
